@@ -33,6 +33,7 @@ require('./routes/stripe')(app);
 if(process.env.NODE_ENV === 'production'){
     app.use('/static', express.static('client/build/static'))
 
+    const path = require('path');
     app.get('*', (req, res)=>{
         res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
     })
