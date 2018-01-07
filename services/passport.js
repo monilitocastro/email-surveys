@@ -19,14 +19,14 @@ passport.use(new GoogleStrategy({
     proxy: true
   },
   (accessToken, refreshToken, profile, done) => {
-    User.findOne({googleId: profile.id}, (err, user)=>{
+    User.findOne({subject: profile.id}, (err, user)=>{
         if(err){
             done(err);
         }
         if(user){
             done(null, user);
         }else{
-            new User({googleId: profile.id}).save()
+            new User({subject: profile.id}).save()
             .then(newUser=>done(null, newUser));
         }
     })

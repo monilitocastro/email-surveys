@@ -9,7 +9,9 @@
   },
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js"
+    "devserver": "nodemon index.js",
+    "dev": "concurrently \"npm start --prefix client\" \"npm run devserver\" ",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": "",
   "license": "ISC",
@@ -17,11 +19,15 @@
     "nodemon": "^1.14.7"
   },
   "dependencies": {
+    "body-parser": "^1.18.2",
+    "concurrently": "^3.5.1",
     "cookie-session": "^2.0.0-beta.3",
     "express": "^4.16.2",
+    "materialize-css": "^0.100.2",
     "mongoose": "^5.0.0-rc2",
     "morgan": "^1.9.0",
     "passport": "^0.4.0",
-    "passport-google-oauth20": "^1.0.0"
+    "passport-google-oauth20": "^1.0.0",
+    "stripe": "^5.4.0"
   }
 }
