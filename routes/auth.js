@@ -2,10 +2,6 @@
 const passport = require('passport');
 const requireAuth = require('../services/requireauth')
 module.exports = (app) => {
-    app.get('/', (req, res)=>{
-        res.send('Hello world!');
-    })
-
     app.get('/auth/google/', passport.authenticate('google', { scope: 'https://www.googleapis.com/auth/userinfo.profile' }) );
 
     app.get('/auth/google/callback',  passport.authenticate('google', { failureRedirect: '/auth/google/signin' }), (req, res) => {
