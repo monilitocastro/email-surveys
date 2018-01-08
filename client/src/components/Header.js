@@ -19,9 +19,6 @@ class Header extends Component{
     componentWillReceiveProps(nextProps){
         this.setState({auth:{user: nextProps.auth.user}})
     }
-    handleTestSendGrid(){
-        this.props.testSendGrid();
-    }
     renderAuthButtons(){
         switch(this.state.auth.user){
             case null:
@@ -31,9 +28,6 @@ class Header extends Component{
             default:
             // TODO create button for axios post to /api/surveynew to test API
                 return [
-                    <li key='testsendgrid'>
-                        <a href='#' onClick={this.handleTestSendGrid.bind(this)}>Test SendGrid</a>
-                    </li>,
                     <li key={'stripepayment'}>
                         <StripePayment>
                         </StripePayment>
