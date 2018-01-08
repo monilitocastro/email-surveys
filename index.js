@@ -11,11 +11,10 @@ mongoose.connect(keys.databaseURI);
 
 require('./services/passport');
 require('./models/user');
+require('./models/survey');
 
 
 const app = express();
-
-
 
 app.use(morgan('combined'));
 app.use(bodyParser.json())
@@ -29,6 +28,7 @@ app.use(passport.session());
 
 require('./routes/auth')(app);
 require('./routes/stripe')(app);
+require('./routes/sendgrid')(app);
 
 if(process.env.NODE_ENV === 'production'){
     app.use('/static', express.static('client/build/static'))

@@ -23,3 +23,17 @@ export function finalizePayment(token, amount, description, currency){
         dispatch({ type: FETCH_USER, user:user });
     }
 }
+
+export function testSendGrid(){
+    return async dispatch => {
+        const response = await axios.post('/api/surveynew',
+            {
+                "title":"Give us your feedback",
+                "subject":"Give us your feedback",
+                "body": "Tell us how we did.",
+                "recipients": "nodemailertest4@gmail.com"
+            }
+        )
+        console.log('responsedata', response.data);
+    }
+}

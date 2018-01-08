@@ -19,16 +19,21 @@ class Header extends Component{
     componentWillReceiveProps(nextProps){
         this.setState({auth:{user: nextProps.auth.user}})
     }
+    handleTestSendGrid(){
+        this.props.testSendGrid();
+    }
     renderAuthButtons(){
-        console.log('PROPS', this.props )
-        console.log('STATE', this.state )
         switch(this.state.auth.user){
             case null:
                 return;
             case false:
                 return <li key={'authgoogle'}><a href='/auth/google/' >Sign In</a></li>;
             default:
+            // TODO create button for axios post to /api/surveynew to test API
                 return [
+                    <li key='testsendgrid'>
+                        <a href='#' onClick={this.handleTestSendGrid.bind(this)}>Test SendGrid</a>
+                    </li>,
                     <li key={'stripepayment'}>
                         <StripePayment>
                         </StripePayment>
@@ -56,7 +61,6 @@ class Header extends Component{
 }
 
 function mapStateToProps(state){
-    console.log('State', state)
     return { auth: state.auth};
 }
 
