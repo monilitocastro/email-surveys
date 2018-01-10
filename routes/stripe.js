@@ -11,7 +11,6 @@ module.exports = (app) => {
         const currency = req.body.currency;
         const amount = req.body.amount;
         const description = req.body.description;
-        console.log('req.body', req.body)
         stripe.charges.create({
             amount,
             currency,

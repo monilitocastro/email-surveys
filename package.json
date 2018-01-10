@@ -19,7 +19,6 @@
     "nodemon": "^1.14.7"
   },
   "dependencies": {
-    "@sendgrid/mail": "^6.1.4",
     "body-parser": "^1.18.2",
     "concurrently": "^3.5.1",
     "cookie-session": "^2.0.0-beta.3",
@@ -29,6 +28,7 @@
     "morgan": "^1.9.0",
     "passport": "^0.4.0",
     "passport-google-oauth20": "^1.0.0",
+    "sendgrid": "^5.2.3",
     "stripe": "^5.4.0"
   }
 }

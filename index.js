@@ -30,6 +30,7 @@ app.use(passport.session());
 
 require('./routes/auth')(app);
 require('./routes/stripe')(app);
+require('./routes/survey')(app);
 
 if(process.env.NODE_ENV === 'production'){
     app.use('/static', express.static('client/build/static'))
