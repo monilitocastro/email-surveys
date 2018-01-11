@@ -7,7 +7,7 @@ import LandingPage from './LandingPage';
 import LandingPageWolf from './LandingPageWolf';
 import LandingPageJumbotron from './LandingPageJumbotron';
 import Dashboard from './Dashboard';
-import SurveyNew from './SurveyNew';
+import SurveyNew from './SurveyNew/';
 import SurveySays from './SurveySays';
 
 class App extends Component {

@@ -23,3 +23,28 @@ export function finalizePayment(token, amount, description, currency){
         dispatch({ type: FETCH_USER, user:user });
     }
 }
+
+export function sendSurvey( values ){
+    const { title, subject, body, recipients} = values;
+    return async dispatch => {
+        const response = await axios.post('/api/surveys', 
+            {
+                title,
+                subject,
+                body,
+                recipients
+            }
+        )
+        if(response.status===200){
+            const user = response.data;
+            dispatch({ type: FETCH_USER, user:user });
+        }else if(response.status===500){
+            // Server error
+            
+        }else if(response.status===400){
+            // Bad Request
+            
+        }
+
+    }
+}

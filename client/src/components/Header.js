@@ -32,7 +32,7 @@ class Header extends Component{
                         <StripePayment>
                         </StripePayment>
                     </li>,
-                    <li key={'credits'}><a href='#' style={{cursor:'default'}}>{this.state.auth.user.credits} Credits</a></li>,
+                    <li key={'credits'}><a style={{cursor:'default'}}>{this.state.auth.user.credits} Credits</a></li>,
                     <li key={'signout'}><a href='/auth/google/signout'>Sign Out</a></li>
                 ];
 
@@ -43,7 +43,7 @@ class Header extends Component{
             <div>
                 <nav>
                     <div className='nav-wrapper'>
-                        <Link to={this.props.auth? '/survey': '/'} className='brand-logo'>SurveyBlast</Link>
+                        <Link to={this.props.auth? '/dashboard': '/'} className='brand-logo'>SurveyBlast</Link>
                         <ul id='nav-mobile' className='right hide-on-med-and down'>
                             { this.renderAuthButtons.bind(this)() }
                         </ul>

@@ -5,7 +5,7 @@ const LandingPageWolf = () => {
         <div  style={{position:'relative'}}>
             <div style={{position:'absolute',bottom:'-70px', display:'flex'}} >
                 <div>
-                    <img src='https://upload.wikimedia.org/wikipedia/en/6/6c/Vulpes_littoralis_transparent_background.png'/>  
+                    <img src='https://upload.wikimedia.org/wikipedia/en/6/6c/Vulpes_littoralis_transparent_background.png' alt='Lithograph of wolf'/>  
                 </div>
                 <div className="col s12 m5">
                     <div className="card-panel teal">
