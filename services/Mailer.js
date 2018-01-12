@@ -17,7 +17,7 @@ class Mailer extends helper.Mail{
         this.addRecipients();
     }
 
-    async send(){
+    async send(){ 
         const request = this.sgApi.emptyRequest({
             method: 'POST',
             path: '/v3/mail/send',
