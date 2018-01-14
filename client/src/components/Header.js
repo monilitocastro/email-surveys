@@ -42,7 +42,7 @@ class Header extends Component{
             <div>
                 <nav>
                     <div className='nav-wrapper'>
-                        <Link to={this.props.auth? '/dashboard': '/'} className='brand-logo'>SurveyBlast</Link>
+                        <Link to={this.props.auth.user? '/dashboard': '/'} className='brand-logo'>SurveyBlast</Link>
                         <ul id='nav-mobile' className='right hide-on-med-and down'>
                             { this.renderAuthButtons.bind(this)() }
                         </ul>

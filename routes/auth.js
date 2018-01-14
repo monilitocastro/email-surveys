@@ -18,9 +18,6 @@ module.exports = (app) => {
         res.send(req.user);
     })
 
-    app.get('/api/protected_resource', requireAuth, (req, res)=>{
-        res.send('Super secret resource.')
-    })
 
 
 }

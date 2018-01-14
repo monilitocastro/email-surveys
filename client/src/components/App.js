@@ -9,6 +9,7 @@ import LandingPageJumbotron from './LandingPageJumbotron';
 import Dashboard from './Dashboard';
 import SurveyNew from './SurveyNew/';
 import SurveySays from './SurveySays';
+import RequireAuth from './hoc/requireauth';
 
 class App extends Component {
     render() {
@@ -25,9 +26,9 @@ class App extends Component {
                     <Route exact path='/' component={LandingPageWolf} />
                     <div style={{paddingTop:'140px'}}>
                         <Route exact path='/' component={LandingPage}/>
-                        <Route exact path='/survey' component={SurveyNew}/>
+                        <Route exact path='/survey' component={RequireAuth(SurveyNew)}/>
                         <Route exact path='/surveysays' component={SurveySays}/>
-                        <Route exact path='/dashboard' component={Dashboard}/>
+                        <Route exact path='/dashboard' component={RequireAuth(Dashboard)}/>
                     </div>
                 </div>
                 

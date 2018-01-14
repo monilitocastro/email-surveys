@@ -54,44 +54,6 @@ module.exports = app =>{
 
         res.status(200).send('OK');
     })
-    app.post('/api/surveys/webhook_OLD', (req,res)=>{
-        const wh = req.body;
-        const value = _.chain(wh)
-            .compact()
-            .uniqBy('email', 'sg_event_id')
-            .each( (item)=>{
-                const { email, url } = item;
-                const path = new Path('/api/:surveyId/:answer');
-                const { pathname } = Url.parse(url);
-                const urlParams = path.test(pathname);
-                const {surveyId, answer} = urlParams;
-                Survey.updateOne(
-                    {
-                        _id: surveyId,
-                        recipients: {
-                            $elemMatch:{
-                                "email" : email,
-                                "responded": false
-                            }
-                        }
-                    },
-                    {
-                        $set: {
-                            "recipients.$.responded": true,
-                            "lastResponded" : Date.now()
-                        },
-                        $inc: {
-                            [answer]: 1
-                        }
-                    }
-                )
-    
-            })
-            .value();
-
-
-        res.status(200).send('OK');
-    })
     app.get('/api/:surveys/:reply', (req, res)=>{
         res.setHeader('content-type', 'text/html')
         res.end('<h1 style="text-align:center; margin-top:20px"> Thank you :) </h1>');

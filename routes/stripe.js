@@ -6,7 +6,7 @@ const stripe = require('stripe')(keys.stripeSecretKey);
 
 module.exports = (app) => {
     // TODO requireAuth
-    app.post('/api/finalize-payment', (req, res, next)=>{
+    app.post('/api/finalize-payment', requireAuth, (req, res, next)=>{
         const source = req.body.source;
         const currency = req.body.currency;
         const amount = req.body.amount;
