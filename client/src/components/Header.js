@@ -24,7 +24,7 @@ class Header extends Component{
             case null:
                 return;
             case false:
-                return <li key={'authgoogle'}><a href='/auth/google/' >Sign In</a></li>;
+                return <li key={'authgoogle'}><a href='/auth/google/' >Create Account/Sign In</a></li>;
             default:
                 return [
                     <li key={'stripepayment'}>
