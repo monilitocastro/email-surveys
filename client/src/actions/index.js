@@ -1,5 +1,6 @@
-import { FETCH_USER } from './types';
+import { FETCH_USER, FETCH_SURVEYS } from './types';
 import axios from 'axios';
+import moment from 'moment';
 
 export function fetchUser(){
     return async (dispatch) => {
@@ -46,5 +47,25 @@ export function sendSurvey( values ){
             
         }
 
+    }
+}
+
+export function fetchSurveys(){
+    return async dispatch => {
+        const response = await axios.get('/api/surveys')
+        if(response.status===200){
+            const list = response.data;
+            const surveyList = list.map((item)=>{
+                let { lastResponded } = item;
+                if(lastResponded){
+                    lastResponded = moment(item.lastResponded).format('Do MMMM YYYY');
+                }
+                return { ...item, lastResponded }
+            })
+            dispatch({ type: FETCH_SURVEYS, surveys:{surveyList} })
+        }else if(response.status===403){
+            const { error } = response.data;
+            dispatch({ type: FETCH_SURVEYS, surveys:{error}})
+        }
     }
 }

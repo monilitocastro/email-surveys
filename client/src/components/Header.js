@@ -26,7 +26,6 @@ class Header extends Component{
             case false:
                 return <li key={'authgoogle'}><a href='/auth/google/' >Sign In</a></li>;
             default:
-            // TODO create button for axios post to /api/surveynew to test API
                 return [
                     <li key={'stripepayment'}>
                         <StripePayment>

@@ -13,7 +13,6 @@ const _ = require('lodash');
 module.exports = app =>{
     app.post('/api/surveys/webhook', (req,res)=>{
         const wh = req.body;
-        // console.log(wh)
         const value = _.chain(wh)
             .map( (item)=>{
                 const { url, email } = item;
@@ -51,14 +50,12 @@ module.exports = app =>{
     
             })
             .value();
-        // console.log('VALUE', value);
 
 
         res.status(200).send('OK');
     })
     app.post('/api/surveys/webhook_OLD', (req,res)=>{
         const wh = req.body;
-        // console.log(wh)
         const value = _.chain(wh)
             .compact()
             .uniqBy('email', 'sg_event_id')
@@ -68,8 +65,6 @@ module.exports = app =>{
                 const { pathname } = Url.parse(url);
                 const urlParams = path.test(pathname);
                 const {surveyId, answer} = urlParams;
-                console.log('OUTPUT:', {email, surveyId, answer})
-                // TODO sql injection protect 'answer'
                 Survey.updateOne(
                     {
                         _id: surveyId,
@@ -93,7 +88,6 @@ module.exports = app =>{
     
             })
             .value();
-        // console.log('VALUE', value);
 
 
         res.status(200).send('OK');
@@ -101,6 +95,17 @@ module.exports = app =>{
     app.get('/api/:surveys/:reply', (req, res)=>{
         res.setHeader('content-type', 'text/html')
         res.end('<h1 style="text-align:center; margin-top:20px"> Thank you :) </h1>');
+    })
+    app.get('/api/surveys', requireAuth, async (req, res)=>{
+        let surveys = {};
+        try{
+            surveys = await Survey.find().sort({dateSent:-1}).exec();
+            res.status(200).send(surveys)
+        }catch(err){
+            console.error(err);
+            throw err;
+            res.status(403).send({error:'Access forbidden'});
+        }
     })
     app.post('/api/surveys', requireAuth, requireCredits, async (req, res)=>{
         const { title, subject, body, recipients } = req.body;

@@ -22,10 +22,6 @@ const surveySchema = mongoose.Schema({
     lastResponded: Date
 })
 
-// surveySchema.pre('save', next => {
-//     const recipientsIdList = this.recipients.map( item => ({id:item.id}));
-//     // TODO save recip IDs or don't put any pre save hooks at all
-// } )
 
 const SurveyClass = mongoose.model('surveys', surveySchema);
 
